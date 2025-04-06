@@ -44,7 +44,7 @@ public class Poupanca extends Conta {
         }
     }
 
-    void rendimentos(double juros) {
+    void rendimento(double juros) {
         this.saldo += this.saldo * (juros / 100);
     }
 }

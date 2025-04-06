@@ -13,6 +13,10 @@ public class Data {
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
     }
 
+    String formato() {
+        return this.dia + "/" + this.mes + "/" + this.ano;
+    }
+
     boolean maior(Data d2) {
         if (this.ano != d2.ano) {
             return this.ano > d2.ano;
