@@ -2,6 +2,7 @@ package banco;
 
 public class Banco {
     public static void main(String[] args) {
+        /*
         // Pessoas
         Pessoa p1 = new Pessoa("Douglas", "012.345.678-90", 'm',new Data(30, 1, 2000));
         Pessoa p2 = new Pessoa("José", "001.234.567-89", 'm', new Data(31, 5, 1962));
@@ -53,5 +54,20 @@ public class Banco {
             c2.rendimento(0.5);
             System.out.println("Saldo após " + i + " dia(s): R$ " + c2.saldo);
         }
+        */
+
+        Gerente g1 = new Gerente();
+        ContaCorrente c1 = new ContaCorrente(g1);
+        Poupanca p1 = new Poupanca(g1);
+
+        c1.extrato();
+        p1.extrato();
+
+        c1.sacar(10);
+        p1.depositar(15);
+        p1.transferir(10, c1);
+
+        c1.extrato();
+        p1.extrato();
     }
 }

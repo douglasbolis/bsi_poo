@@ -3,6 +3,11 @@ package banco;
 public class ContaCorrente extends Conta {
     double limite;
 
+    ContaCorrente(Gerente gerente) {
+        super(gerente);
+        this.limite = 200;
+    }
+
     ContaCorrente (String numero, Pessoa titular, Gerente gerente, Data dtCriacao) {
         this(numero, titular, gerente, dtCriacao, 200);
     }
@@ -17,37 +22,18 @@ public class ContaCorrente extends Conta {
     }
 
     void extrato() {
-        System.out.println("*** EXTRATO DA CONTA ***");
-        System.out.println("Número: " + this.numero);
-        System.out.println("Titular: " + this.titular.nome);
-        System.out.println("Valor disponível para saque: " + this.disponivel() + "\n");
+        System.out.println("*** EXTRATO DA CONTA CORRENTE ***");
+        super.extrato();
     }
 
-    boolean sacar(double valor) {
-        System.out.println("Realizando saque na conta " + this.numero);
-
-        if (this.disponivel() < valor) {
-            System.out.println("Erro: não foi possível sacar R$ " + valor);
-            System.out.println("Valor disponível para saque: R$ " + this.disponivel() + "\n");
-            return false;
-        }
-
-        this.saldo -= valor;
-        System.out.println("Saque de R$ " + valor + " realizado com sucesso");
-        System.out.println("Novo saldo em " + this.numero + ": R$ " + this.saldo + "\n");
-        return true;
-    }
-
-    void transferir(double valor, Conta destino) {
-        System.out.println("Realizando transferência");
-        System.out.println("Origem: " + this.numero + " - Destino: " + destino.numero);
-
-        if (this.sacar(valor)) {
-            destino.depositar(valor);
-            System.out.println("Transferência de R$ " + valor + " realizado com sucesso\n");
+    void alterarLimite(double limite) {
+        if (this.gerente.validarAcesso()) {
+            System.out.println("Limite da conta " + this.numero + " alterado com sucesso.");
+            System.out.println("Novo limite R$ " + this.limite + ".");
+            this.limite = limite;
         } else {
-            System.out.println("Erro: não foi possível transferir R$ " + valor);
-            System.out.println("Valor disponível para transferência: R$ " + this.disponivel() + "\n");
+            System.out.println("Senha incorreta.");
+            System.out.println("Não foi possível alterar o limite da conta.");
         }
     }
 
