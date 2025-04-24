@@ -3,9 +3,10 @@ package banco;
 import java.util.Scanner;
 
 public class Gerente extends Pessoa {
-    String mat, senha;
+    private String mat;
+    private String senha;
 
-    Gerente() {
+    public Gerente() {
         super();
         Scanner s = new Scanner(System.in);
 
@@ -16,17 +17,33 @@ public class Gerente extends Pessoa {
         this.senha = s.nextLine();
     }
 
-    Gerente(String nome, String cpf, char sexo, Data dtNasc, String mat, String senha) {
+    public Gerente(String nome, String cpf, char sexo, Data dtNasc, String mat, String senha) {
         super(nome, cpf, sexo, dtNasc);
         this.mat = mat;
         this.senha = senha;
     }
 
-    boolean validarAcesso(String s) {
-        return this.senha.equals(s);
+    public String getMat() {
+        return mat;
     }
 
-    boolean validarAcesso() {
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senhaAnterior, String senha) {
+        if(this.validarAcesso(senhaAnterior)) {
+            this.senha = senha;
+        }
+
+        System.out.println("Senha incorreta");
+    }
+
+    public boolean validarAcesso(String s) {
+        return this.getSenha().equals(s);
+    }
+
+    public boolean validarAcesso() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Informe a senha: ");

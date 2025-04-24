@@ -1,21 +1,20 @@
 package banco;
 
 public class Poupanca extends Conta {
-
-    Poupanca(Gerente gerente) {
+    public Poupanca(Gerente gerente) {
         super(gerente);
     }
 
-    Poupanca (String numero, Pessoa titular, Gerente gerente, Data dtCriacao) {
+    public Poupanca (String numero, Pessoa titular, Gerente gerente, Data dtCriacao) {
         super(numero, titular, gerente, dtCriacao);
     }
 
-    void extrato() {
+    public void extrato() {
         System.out.println("*** EXTRATO DA CONTA POUPANÇA ***");
         super.extrato();
     }
 
-    void rendimento(double juros) {
-        this.saldo += this.saldo * (juros / 100);
+    public void rendimento(double juros) {
+        this.setSaldo(this.getSaldo() + this.getSaldo() * (juros / 100));
     }
 }

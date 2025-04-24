@@ -3,42 +3,68 @@ package banco;
 import java.util.Scanner;
 
 public class Data {
-    int dia, mes, ano;
+    private int dia;
+    private int mes;
+    private int ano;
 
-    Data() {
+    public Data() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Digite o dia: ");
-        this.dia = s.nextInt();
+        this.setDia(s.nextInt());
 
         System.out.println("Digite o mês: ");
-        this.dia = s.nextInt();
+        this.setDia(s.nextInt());
 
         System.out.println("Digite o ano: ");
-        this.dia = s.nextInt();
+        this.setDia(s.nextInt());
     }
 
-    Data(int dia, int mes, int ano) {
+    public Data(int dia, int mes, int ano) {
+        this.setDia(dia);
+        this.setMes(mes);
+        this.setAno(ano);
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
         this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
         this.mes = mes;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
-    void imprimir() {
-        System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
+    public String formato() {
+        return this.getDia() + "/" + this.getMes() + "/" + this.getAno();
     }
 
-    String formato() {
-        return this.dia + "/" + this.mes + "/" + this.ano;
+    public void imprimir() {
+        System.out.println(this.formato());
     }
 
-    boolean maior(Data d2) {
-        if (this.ano != d2.ano) {
-            return this.ano > d2.ano;
+    public boolean maior(Data d2) {
+        if (this.getAno() != d2.getAno()) {
+            return this.getAno() > d2.getAno();
         }
-        if (this.mes != d2.mes) {
-            return this.mes > d2.mes;
+        if (this.getMes() != d2.getMes()) {
+            return this.getMes() > d2.getMes();
         }
-        return this.dia > d2.dia;
+        return this.getDia() > d2.getDia();
     }
 }

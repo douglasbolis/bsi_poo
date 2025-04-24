@@ -3,47 +3,78 @@ package banco;
 import java.util.Scanner;
 
 public class Pessoa {
-    String nome;
-    String cpf;
-    Data dataNasc;
-    char sexo;
+    private String nome;
+    private String cpf;
+    private Data dataNasc;
+    private char sexo;
 
-    Pessoa() {
+    public Pessoa() {
         Scanner s = new Scanner(System.in);
 
         System.out.println("Digite o nome: ");
-        this.nome = s.nextLine();
+        this.setNome(s.nextLine());
 
         System.out.println("Digite o cpf: ");
-        this.cpf = s.nextLine();
+        this.setCpf(s.nextLine());
 
         System.out.println("Digite a data de nascimento: ");
-        this.dataNasc = new Data();
+        this.setDataNasc(new Data());
 
         System.out.println("Digite o sexo: ");
-        this.sexo = s.nextLine().charAt(0);
+        this.setSexo(s.nextLine().charAt(0));
     }
 
-    Pessoa (String nome, String cpf, char sexo, Data dtNasc) {
+    public Pessoa (String nome, String cpf, char sexo, Data dtNasc) {
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setDataNasc(dtNasc);
+        this.setSexo(sexo);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
         this.cpf = cpf;
-        this.dataNasc = dtNasc;
+    }
+
+    public Data getDataNasc() {
+        return dataNasc;
+    }
+
+    public void setDataNasc(Data dataNasc) {
+        this.dataNasc = dataNasc;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(char sexo) {
         this.sexo = sexo;
     }
 
-    void alteraCpf (String cpf) {
-        this.cpf = cpf;
+    public void alteraCpf (String cpf) {
+        this.setCpf(cpf);
     }
 
-    int consultaIdade(Data hoje) {
-        int idade = hoje.ano - this.dataNasc.ano;
+    public int consultaIdade(Data hoje) {
+        int idade = hoje.getAno() - this.getDataNasc().getAno();
 
         // Ajusta a idade se o aniversário ainda não ocorreu neste ano
-        if (hoje.mes < this.dataNasc.mes || (hoje.mes == this.dataNasc.mes && hoje.dia < this.dataNasc.dia)) {
+        if (hoje.getMes() < this.getDataNasc().getMes() || (hoje.getMes() == this.getDataNasc().getMes() && hoje.getDia() < this.getDataNasc().getDia())) {
             idade--;
         }
 
         return idade;
     }
-
 }
